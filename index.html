@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistem Diagnosa Penyakit Balita</title>
+</head>
+<body>
+    <h2>Sistem Diagnosa Penyakit Balita</h2>
+    <form method="POST">
+        {% for g in gejala %}
+            <label><input type="checkbox" name="gejala" value="{{ g }}" {% if g in selected %}checked{% endif %}> {{ g.replace('_', ' ') }}</label><br>
+        {% endfor %}
+        <button type="submit">Diagnosa</button>
+    </form>
+
+    {% if hasil is defined %}
+        <h3>Hasil Diagnosa:</h3>
+        {% if hasil %}
+            <ul>
+            {% for h in hasil %}
+                <li>{{ h.replace('_', ' ').title() }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Tidak ada penyakit terdeteksi.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
